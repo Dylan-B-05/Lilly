@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lilly, Will You Be My Valentine? ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow-x: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 24px;
+      text-align: center;
+      max-width: 440px;
+      width: 92%;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 1.2s ease;
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #ff4d6d;
+      font-size: 2.2rem;
+    }
+
+    h2 {
+      color: #ff4d6d;
+      margin: 1.5rem 0 1.2rem;
+    }
+
+    p {
+      color: #555;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 1.8rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 0.75rem 1.6rem;
+      font-size: 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+      box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4);
+    }
+
+    .no {
+      background: #f1f1f1;
+      color: #555;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.15);
+    }
+
+    .celebrate {
+      display: none;
+      animation: fadeIn 1s ease;
+      margin-top: 1.5rem;
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.8);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="card" id="card">
+    <h1>Lilly 💖</h1>
+
+    <p>
+	I promise to cuddle you forever....
+    </p>
+
+    <div class="gallery">
+      <img src="1.jpeg" alt="Us together" />
+      <img src="2.png" alt="Us together" />
+      <img src="3.jpeg" alt="Us together" />
+      <img src="5.jpeg" alt="Us together" />
+    </div>
+
+    <h2>🐧 Don’t be a grookie…<br />Be my Valentine? 💌</h2>
+
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">Yes 💕</button>
+      <button class="no" onclick="moveNo(this)">No 🙈</button>
+    </div>
+
+    <div class="celebrate" id="celebrate">
+      <h1>YAY!! 🥰</h1>
+      <p>
+        I love you, Pengy 🐧❤️<br />
+        Thank you for being you — kind, funny, beautiful, and mine.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function sayYes() {
+      document.querySelector('.buttons').style.display = 'none';
+      document.getElementById('celebrate').style.display = 'block';
+      spawnHearts();
+    }
+
+    function moveNo(btn) {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function spawnHearts() {
+      const heartsContainer = document.getElementById('hearts');
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerText = '🐧';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        heart.style.fontSize = 1 + Math.random() * 2 + 'rem';
+        heartsContainer.appendChild(heart);
+      }
+    }
+  </script>
+</body>
+</html>
